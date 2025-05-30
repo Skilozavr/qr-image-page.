@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Image</title>
+  <title>Protected Image</title>
   <style>
     body {
       margin: 0;
@@ -12,6 +12,22 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      color: white;
+      font-family: sans-serif;
+      flex-direction: column;
+    }
+    #image-container {
+      display: none;
+    }
+    #password-form input {
+      padding: 10px;
+      font-size: 16px;
+    }
+    #password-form button {
+      padding: 10px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
     }
     img {
       max-width: 100%;
@@ -20,6 +36,27 @@
   </style>
 </head>
 <body>
-  <img src="https://i.postimg.cc/dtLXpzbz/Frame-V2.png" alt="QR Image" />
+  <div id="password-form">
+    <p>Введите пароль, чтобы посмотреть изображение:</p>
+    <input type="password" id="password" placeholder="Пароль" />
+    <button onclick="checkPassword()">Открыть</button>
+  </div>
+
+  <div id="image-container">
+    <img src="https://i.postimg.cc/dtLXpzbz/Frame-V2.pngß" alt="QR Image" />
+  </div>
+
+  <script>
+    function checkPassword() {
+      const correctPassword = "letmein123";
+      const userInput = document.getElementById("password").value;
+      if (userInput === correctPassword) {
+        document.getElementById("password-form").style.display = "none";
+        document.getElementById("image-container").style.display = "block";
+      } else {
+        alert("Неверный пароль!");
+      }
+    }
+  </script>
 </body>
 </html>
